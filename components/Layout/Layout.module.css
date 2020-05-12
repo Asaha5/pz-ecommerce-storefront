@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis:400,700");
+
+.list-style-none-ul {
+    list-style: none;
+    margin-top: 1rem;
+    padding: 0 1rem;
+}
+
+.header-actions-ul {
+    list-style: none;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    padding: 0 3rem;
+}
+
+.layout-a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* CONTAINER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wrapper > * {
+    padding: 20px;
+}
+
+/* MAIN
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    min-height: 85vh;
+}
+
+
+/* FOOTER
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-footer {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 0 3rem;
+}
+
+.page-footer ul {
+    display: flex;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.page-footer ul li:not(:last-child) {
+    margin-right: 20px;
+}
+
+
+/* MQ
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@media screen and (min-width: 550px) {
+    .page-header ul {
+        width: auto;
+        margin-top: 1.2rem;
+    }
+
+    .page-header .cta-contact {
+        order: 1;
+    }
+
+    .page-footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .page-footer ul {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    .page-main {
+        padding-left: 90px;
+    }
+}
