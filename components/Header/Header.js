@@ -3,7 +3,7 @@ import {
     HeaderContainer, ChildNavOfHeader, ChildUlOfHeader, ListItem, HeaderCategories,
     HeaderActions, HeaderLink
 } from './styles'
-import styles from "../Layout/Layout.module.css";
+import styles from "../Layout/layout.module.css";
 import UserProfilePopover from "../UserProfile/UserProfilePopover";
 import {IconButton} from "evergreen-ui";
 import HeaderSearch from "./Search";
