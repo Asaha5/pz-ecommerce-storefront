@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './layout.module.css'
+import styles from './Layout.module.css'
 import Head from 'next/head'
 import { Avatar, IconButton } from 'evergreen-ui'
 import UserProfilePopover from "../UserProfile/UserProfilePopover";
