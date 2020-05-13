@@ -3,7 +3,6 @@ import {
     HeaderContainer, ChildNavOfHeader, ChildUlOfHeader, ListItem, HeaderCategories,
     HeaderActions, HeaderLink
 } from './styles'
-import styles from "../Layout/layout.module.css";
 import UserProfilePopover from "../UserProfile/UserProfilePopover";
 import {IconButton} from "evergreen-ui";
 import HeaderSearch from "./Search";
@@ -12,7 +11,7 @@ const Header = () => {
     return (
         <HeaderContainer>
             <ChildNavOfHeader>
-                <h2 className={styles["logo"]}>PZ SHOP</h2>
+                <h2>PZ SHOP</h2>
                 <HeaderCategories>
                     <ListItem>
                         <HeaderLink>Toys</HeaderLink>
