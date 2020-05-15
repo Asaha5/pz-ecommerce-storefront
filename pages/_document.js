@@ -1,11 +1,13 @@
 import React from "react";
-import Document from 'next/document'
+import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+import { extractStyles } from 'evergreen-ui';
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx) {
         const sheet = new ServerStyleSheet()
         const originalRenderPage = ctx.renderPage
+        const { css, hydrationScript } = extractStyles();
 
         try {
             ctx.renderPage = () =>
@@ -17,6 +19,8 @@ export default class MyDocument extends Document {
             const initialProps = await Document.getInitialProps(ctx)
             return {
                 ...initialProps,
+                css,
+                hydrationScript,
                 styles: (
                     <>
                         {initialProps.styles}
@@ -27,5 +31,22 @@ export default class MyDocument extends Document {
         } finally {
             sheet.seal()
         }
+    }
+
+    render() {
+        const { css, hydrationScript } = this.props;
+        return (
+            <html>
+            <Head>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <style dangerouslySetInnerHTML={{ __html: css }} />
+            </Head>
+            <body>
+            <Main />
+            {hydrationScript}
+            <NextScript />
+            </body>
+            </html>
+        );
     }
 }

@@ -5,8 +5,8 @@ import Product from "./Product";
 const ProductGrid = ({products}) => {
     return (
         <ProductsContainer>
-            {products.map(({...productProps}) => (
-                <Product {...productProps} ></Product>
+            {products.map(({...productProps}, idx) => (
+                <Product key={idx} {...productProps} ></Product>
             ))}
         </ProductsContainer>
     )
