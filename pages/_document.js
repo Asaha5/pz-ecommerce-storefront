@@ -39,7 +39,7 @@ export default class MyDocument extends Document {
             <html>
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <style dangerouslySetInnerHTML={{ __html: css }} />
+                <style dangerouslySetInnerHTML={{ __html: css }} key="evergreen_css"/>
             </Head>
             <body>
             <Main />

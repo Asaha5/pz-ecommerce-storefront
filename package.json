@@ -10,7 +10,7 @@
   "dependencies": {
     "@blueprintjs/icons": "^3.16.0",
     "evergreen-ui": "^4.27.4",
-    "next": "9.3.6",
+    "next": "9.4.0",
     "prop-types": "^15.7.2",
     "pure-react-carousel": "^1.27.1",
     "react": "16.13.1",
