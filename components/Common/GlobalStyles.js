@@ -1,6 +1,10 @@
-import { createGlobalStyle } from 'styled-components'
+import {createGlobalStyle} from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
+  body {
+    margin: 0px;
+  }
+    
   .alice-carousel {
   position: relative;
   box-sizing: border-box;

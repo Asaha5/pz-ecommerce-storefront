@@ -1,43 +1,60 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export const HeaderContainer = styled.header`
-    padding: 0 3rem;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-    border-bottom: 1px solid #DDEBF7;
-`
+export const HeaderContainer = styled.nav`
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
 
-export const ChildNavOfHeader = styled.nav`
+  @media only screen and (max-width : 768px) {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: 20% 40% 40%;
+    justify-items: center;
     align-items: center;
-`
+    width: 100%;
+    border-bottom: 1px solid #ddebf7;
+  }
+`;
+export const HeaderCategories = styled.ul`
+  list-style: none;
+  display: flex;
+  
+  @media only screen and (max-width : 768px) {
+    justify-content: space-around;
+  }
+`;
 
-export const ChildUlOfHeader  = styled.ul`
-    display: flex;
-    list-style: none;
-    margin-top: 1rem;
-`
+export const HeaderActions = styled.ul`
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  @media only screen and (max-width : 768px) {
+    justify-content: center;
+  }
+`;
 
 export const ListItem = styled.li`
-    :not(:last-child) {
-        padding-right: 15px;
-    }
-`
+  @media (min-width: 992px) {
+    margin: 0px 10px;
+  }
+`;
 
-export const HeaderCategories = styled(ChildUlOfHeader)`
-    padding: 0 2rem;
-`
-
-export const HeaderActions = styled(ChildUlOfHeader)`
-    padding: 0 3rem;
-`
 export const HeaderLink = styled.a`
-    text-decoration: none;
-    color: inherit;
-`
+  text-decoration: none;
+  color: inherit;
+`;
 
-export const HeaderLogo = styled.h2`
-    
+export const HeaderLogo = styled.h2``;
+
+export const MobileHeader = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  //padding: 0 2rem;
 `

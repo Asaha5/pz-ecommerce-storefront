@@ -5,11 +5,18 @@ import styled from 'styled-components'
 const CarouselContainer = styled.div`
   display: flex;
   height: 600px;
+  @media only screen and (max-width : 768px) {
+    padding: 1rem 0;
+    height: 200px;
+  }
 `
 
 const ImageContainer = styled.img`
   height: 600px;
   width: 100%;
+  @media only screen and (max-width : 768px) {
+    height: 200px;
+  }
 `
 
 const MainCarousel = () => {

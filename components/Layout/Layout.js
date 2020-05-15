@@ -6,21 +6,15 @@ import styled from 'styled-components'
 import MainCarousel from "../Common/Carousel/MainCarousel";
 import ProductGrid from "../Products/ProductGrid";
 
-
-
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    //& > * {
-    //    padding: 0 3rem;
-    //}
 `
 
 const Main = styled.main`
     display: flex;
     flex-direction: column;
-    //justify-content: center;
     flex-grow: 1;
     font-family: 'Roboto', sans-serif;
 `

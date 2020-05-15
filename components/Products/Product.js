@@ -9,17 +9,18 @@ const Product = ({imgSrc, description, rating, price}) => {
             elevation={2}
             hoverElevation={3}
             float="left"
-            width={400}
+            width={'auto'}
             height={500}
             margin={24}
             display="flex"
             justifyContent="space-around"
             alignItems="center"
             flexDirection="column"
-            padding={3}
+            paddingX={1}
+            paddingY={1}
             style={{cursor: 'pointer'}}
         >
-            <Image src={imgSrc ? imgSrc : "/dummy_product.jpg"} width={'350px'} height={"350px"}/>
+            <Image src={imgSrc ? imgSrc : "/dummy_product.jpg"} width={'90%'} height={"350px"}/>
             <Text size={400}>{description ? description : "A beautiful toy"}</Text>
             <Strong size={500} color={"#084B8A"}>{price ? `₹${price}` : `₹3500`}</Strong>
             <Pane display="flex" padding={1} justifyContent="space-around">

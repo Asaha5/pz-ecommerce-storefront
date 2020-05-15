@@ -12,6 +12,11 @@ export const FooterContainer = styled.div`
 export const FooterItemsContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
+  @media only screen and (max-width : 768px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+    gap: 2px;
+  }
 `
 
 export const CopyRight = styled.div`

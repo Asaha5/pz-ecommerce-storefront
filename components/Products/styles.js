@@ -5,7 +5,7 @@ const ProductsContainer = styled.div`
   display: grid;
   grid-gap: 1rem;
   grid-auto-flow: dense;
-  grid-template-columns: repeat(auto-fill,minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(400px, 1fr));
 
 `
 
