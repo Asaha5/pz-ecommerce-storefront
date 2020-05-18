@@ -2,8 +2,12 @@ import App from 'next/app'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import AliceCarouselStyles from "../components/Common/GlobalStyles";
+import {SWRConfig} from 'swr'
+import {request} from "../lib/datocms";
 
 const theme = {
+   themeColor: '#0788DE',
+   headerGradientFontColor: '#F7F9FD'
 }
 
 export default class MyApp extends App {
@@ -11,8 +15,10 @@ export default class MyApp extends App {
         const { Component, pageProps } = this.props
         return (
             <ThemeProvider theme={theme}>
-                <AliceCarouselStyles/>
-                <Component {...pageProps} />
+                <SWRConfig fetcher={request}>
+                    <AliceCarouselStyles/>
+                    <Component {...pageProps} />
+                </SWRConfig>
             </ThemeProvider>
         )
     }

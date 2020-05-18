@@ -9,17 +9,21 @@
   },
   "dependencies": {
     "@blueprintjs/icons": "^3.16.0",
+    "bootstrap-4-grid": "^3.4.0",
     "evergreen-ui": "^4.27.4",
+    "graphql-request": "^1.8.2",
     "next": "9.4.0",
     "prop-types": "^15.7.2",
     "pure-react-carousel": "^1.27.1",
     "react": "16.13.1",
     "react-alice-carousel": "^1.18.0",
+    "react-datocms": "^1.2.4",
     "react-dom": "16.13.1",
     "react-media": "^1.10.0",
     "react-stripe-elements": "^6.1.2",
     "reacto-form": "^1.5.0",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "swr": "^0.2.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7"

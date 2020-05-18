@@ -1,9 +1,9 @@
 import styled from 'styled-components'
+import {Image} from 'react-datocms'
 
-const Image = styled.img`
+const AppImage = styled(Image)`
   height: ${props => props.height ? props.height : "380px"}
   width: ${props => props.width ? props.width : "480px"}
-  border-radius: .1rem;
 `
 
-export default Image
+export default AppImage

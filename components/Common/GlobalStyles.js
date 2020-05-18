@@ -3,6 +3,7 @@ import {createGlobalStyle} from 'styled-components'
 const GlobalStyles = createGlobalStyle`
   body {
     margin: 0px;
+    background-color: #f2f3f7;
   }
     
   .alice-carousel {

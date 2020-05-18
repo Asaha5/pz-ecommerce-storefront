@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Autocomplete, Pane, SearchInput, IconButton} from "evergreen-ui";
+import {Autocomplete, Pane, IconButton} from "evergreen-ui";
+import SearchInput from '../Common/Search'
 
 const HeaderSearch = () => {
     return (
