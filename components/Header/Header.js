@@ -17,25 +17,9 @@ const Header = () => {
     return (
         <Media query="(max-width: 768px)">
             {
-                matches => matches ?
-                    <>
-                        <ResponsiveSideBar isShown={isSidebarOpen} onClose={() => setSidebarState(!isSidebarOpen)}/>
-                        <HeaderContainer>
-                            <MobileHeader>
-                                <IconButton icon="menu" intent="none" appearance="minimal" iconSize={30}
-                                            onClick={() => setSidebarState(!isSidebarOpen)}/>
-                                <h2>PZ SHOP</h2>
-                                <IconButton icon="shopping-cart" intent="none" appearance="minimal" iconSize={30}/>
-                            </MobileHeader>
-                            <div style={{display: 'flex', margin: '0 auto'}}>
-                                <HeaderSearch/>
-                            </div>
-                        </HeaderContainer>
-                    </>
-                    :
+                matches => !matches ?
                     <HeaderContainer>
                         <h2>PZ SHOP</h2>
-
                         {/*<GradientContainer></GradientContainer>*/}
                         <HeaderCategories>
                             <ListItem>
@@ -66,6 +50,21 @@ const Header = () => {
                             </ListItem>
                         </HeaderActions>
                     </HeaderContainer>
+                    :
+                    <>
+                        <ResponsiveSideBar isShown={isSidebarOpen} onClose={() => setSidebarState(!isSidebarOpen)}/>
+                        <HeaderContainer>
+                            <MobileHeader>
+                                <IconButton icon="menu" intent="none" appearance="minimal" iconSize={30}
+                                            onClick={() => setSidebarState(!isSidebarOpen)}/>
+                                <h2>PZ SHOP</h2>
+                                <IconButton icon="shopping-cart" intent="none" appearance="minimal" iconSize={30}/>
+                            </MobileHeader>
+                            <div style={{display: 'flex', margin: '0 auto'}}>
+                                <HeaderSearch/>
+                            </div>
+                        </HeaderContainer>
+                    </>
             }
         </Media>
 

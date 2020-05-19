@@ -19,16 +19,17 @@ const Main = styled.main`
     font-family: 'Roboto', sans-serif;
 `
 
-function Layout({children, showCarousel}) {
+function Layout({children, showCarousel, style}) {
     return (
         <Container>
             <Head>
                 <title>PZ SHOP</title>
                 <link rel="icon" href="/favicon.ico" />
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;1,900&family=Roboto&display=swap" rel="stylesheet"/>
+                {/*<link rel="stylesheet" href="/grid.min.css"/>*/}
             </Head>
             <Header/>
-            <Main>
+            <Main style={style}>
                 {showCarousel && <MainCarousel/>}
                 {children}
             </Main>

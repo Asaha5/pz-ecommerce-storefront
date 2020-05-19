@@ -8,6 +8,7 @@ import useSWR from 'swr'
 
 const QUERY = `query AllProducts {
   allProducts(filter: {isRecommended: {eq: "true"}}) {
+    id
     isRecommended
     name
     price

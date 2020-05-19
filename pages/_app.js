@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import AliceCarouselStyles from "../components/Common/GlobalStyles";
 import {SWRConfig} from 'swr'
 import {request} from "../lib/datocms";
+// import 'bootstrap-4-grid/css/grid.min.css'
 
 const theme = {
    themeColor: '#0788DE',
