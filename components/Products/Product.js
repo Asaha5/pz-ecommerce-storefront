@@ -9,8 +9,8 @@ const Product = ({id, url, name, rating, price, responsiveImage}) => {
     const router = useRouter()
     return (
         <Link href='/product/[id]' as={`/product/${id}`} passHref={true}>
-            <Card
-                elevation={3}
+            <Pane
+                elevation={2}
                 float="left"
                 width={'auto'}
                 height={500}
@@ -22,17 +22,16 @@ const Product = ({id, url, name, rating, price, responsiveImage}) => {
                 paddingX={15}
                 paddingY={10}
                 style={{cursor: 'pointer'}}
-                background={'tint1'}
-                border
+                background={'#EDF0F2'}
             >
                 <Image data={responsiveImage}/>
                 <Text size={400}>{name ? name : "A beautiful toy"}</Text>
-                <Strong size={500} color={"#084B8A"}>{price ? `AUD ${price}` : `AUD 50`}</Strong>
+                <Strong size={500} color={"#084B8A"}>{price ? `$${price}` : `$ 50`}</Strong>
                 <Pane display="flex" padding={1} justifyContent="space-around">
                     <AppButton title={"ADD TO CART"} iconRequired={true} icon={"add"} marginRight={10}/>
                     <AppButton title={"BUY NOW"} iconRequired={false} />
                 </Pane>
-            </Card>
+            </Pane>
         </Link>
     )
 }

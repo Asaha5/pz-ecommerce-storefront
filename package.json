@@ -14,7 +14,6 @@
     "graphql-request": "^1.8.2",
     "next": "9.4.0",
     "prop-types": "^15.7.2",
-    "pure-react-carousel": "^1.27.1",
     "react": "16.13.1",
     "react-alice-carousel": "^1.18.0",
     "react-datocms": "^1.2.4",

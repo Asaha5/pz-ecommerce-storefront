@@ -4,7 +4,6 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import styled from 'styled-components'
 import MainCarousel from "../Common/Carousel/MainCarousel";
-import ProductGrid from "../Products/ProductGrid";
 
 const Container = styled.div`
     display: flex;
@@ -30,7 +29,6 @@ function Layout({children, showCarousel, style}) {
             </Head>
             <Header/>
             <Main style={style}>
-                {showCarousel && <MainCarousel/>}
                 {children}
             </Main>
             <Footer/>

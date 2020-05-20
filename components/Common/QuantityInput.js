@@ -24,6 +24,7 @@ const QuantityInput = ({quantity, onQuantityChange}) => {
                     handleClick(-1)
                 }}/>
             <TextInputField
+                label={''}
                 placeholder="Quantity"
                 type={'number'}
                 min={1}

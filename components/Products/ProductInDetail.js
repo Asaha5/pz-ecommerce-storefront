@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
-import styled from 'styled-components'
 import Image from "../Common/Image";
-import {Heading, Text, Strong, TextInput, Pane, Paragraph} from 'evergreen-ui'
+import {Heading, Text, Strong, Paragraph} from 'evergreen-ui'
 import QuantityInput from "../Common/QuantityInput";
 import AppButton from "../Common/Button";
 
@@ -55,7 +54,7 @@ const ProductInDetail = ({product}) => {
                         </div>
                         {
                             PRODUCT_PROPERTIES.map(({property, label}) => (
-                                <div className='row'>
+                                <div key={`${property}_key`} className='row'>
                                     <div className='col-md-3 mt-3'>
                                         <Strong size={400}>{`${label} :`}</Strong>
                                     </div>
