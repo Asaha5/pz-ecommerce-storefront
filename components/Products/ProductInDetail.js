@@ -29,7 +29,7 @@ const ProductInDetail = ({product}) => {
     const [selectedImageIndex, setImageIndex] = useState(0)
 
     const {responsiveImage, name, price, thumbnails, allImages} = product
-    const {responsiveImage: actualImage} = allImages[selectedImageIndex]
+    const {responsiveImage: actualImage} = allImages ? allImages[selectedImageIndex] : {responsiveImage}
     return (
         <div className='container' style={{paddingTop: '2rem'}}>
             <div className='row'>
@@ -39,7 +39,7 @@ const ProductInDetail = ({product}) => {
                             <div className='col-md-3'>
                                 <div className='d-flex flex-column align-content-between'>
                                     {
-                                        thumbnails.map(({responsiveImage}, idx) => (
+                                        thumbnails && thumbnails.map(({responsiveImage}, idx) => (
                                             <ThumbnailContainer onClick={e => {
                                                 setImageIndex(idx)
                                             }} key={idx}>
@@ -51,7 +51,7 @@ const ProductInDetail = ({product}) => {
                             </div>
                             <div className='col-md-9'>
                                 {/*{responsiveImage && <Image data={responsiveImage}/>}*/}
-                                <Image data={actualImage}/>
+                                {actualImage && <Image data={actualImage}/>}
                             </div>
                         </div>
                     </div>
