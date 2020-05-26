@@ -4802,6 +4802,13 @@ react-dom@16.13.1:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
+react-elastic-carousel@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-elastic-carousel/-/react-elastic-carousel-0.6.1.tgz#b979dfbd5c9a16e5ffa0b46f1edc395ca0463eed"
+  integrity sha512-mqS24wBLhfW66c117pstfSfaMAA1r3Hki8cuugXe03JubcHfIVPRO50+JLLVJ3D7TS1ZC5U01h+sGp3KUIdIZw==
+  dependencies:
+    react-swipeable "^5.5.1"
+
 react-event-listener@^0.5.1:
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.5.10.tgz#378403c555fe616f312891507a742ecbbe2c90de"
@@ -4860,6 +4867,13 @@ react-stripe-elements@^6.1.2:
   integrity sha512-gYbYhVVJm3Woc84TgmuiqUj44rI/BZGUVUTTmS0U6kZyZa5fYMPlKKIsVZdQZufQ7Ab4BXLO2LSxBlGY0s2jew==
   dependencies:
     prop-types "15.7.2"
+
+react-swipeable@^5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-5.5.1.tgz#48ae6182deaf62f21d4b87469b60281dbd7c4a76"
+  integrity sha512-EQObuU3Qg3JdX3WxOn5reZvOSCpU4fwpUAs+NlXSN3y+qtsO2r8VGkVnOQzmByt3BSYj9EWYdUOUfi7vaMdZZw==
+  dependencies:
+    prop-types "^15.6.2"
 
 react-tiny-virtual-list@^2.1.4:
   version "2.2.0"

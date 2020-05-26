@@ -12,21 +12,20 @@ const Product = ({id, url, name, rating, price, responsiveImage}) => {
             <Pane
                 elevation={2}
                 float="left"
-                width={'auto'}
+                width={350}
                 height={500}
                 margin={24}
                 display="flex"
-                justifyContent="space-around"
+                justifyContent="space-evenly"
                 alignItems="center"
                 flexDirection="column"
-                paddingX={15}
-                paddingY={10}
+                paddingX={10}
                 style={{cursor: 'pointer'}}
-                background={'#EDF0F2'}
+                background={'#F9F9FB'}
             >
                 <Image data={responsiveImage}/>
-                <Text size={400}>{name ? name : "A beautiful toy"}</Text>
-                <Strong size={500} color={"#084B8A"}>{price ? `$${price}` : `$ 50`}</Strong>
+                <Text size={400} color={'#234361'} style={{textAlign: 'center'}}>{name}</Text>
+                <Strong size={500} color={"#234361"}>{price ? `$${price}` : `$ 50`}</Strong>
                 <Pane display="flex" padding={1} justifyContent="space-around">
                     <AppButton title={"ADD TO CART"} iconRequired={true} icon={"add"} marginRight={10}/>
                     <AppButton title={"BUY NOW"} iconRequired={false} />

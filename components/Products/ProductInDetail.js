@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import styled from "styled-components";
 import Image from "../Common/Image";
 import {Heading, Text, Strong, Paragraph} from 'evergreen-ui'
 import QuantityInput from "../Common/QuantityInput";
@@ -19,17 +20,43 @@ const PRODUCT_PROPERTIES = [
     }
 ]
 
+const ThumbnailContainer = styled.div`
+  cursor: pointer;
+`
+
 const ProductInDetail = ({product}) => {
     const [quantity, setQuantity] = useState(1)
+    const [selectedImageIndex, setImageIndex] = useState(0)
 
-    const {responsiveImage, name, price, size, weight, description} = product
+    const {responsiveImage, name, price, thumbnails, allImages} = product
+    const {responsiveImage: actualImage} = allImages[selectedImageIndex]
     return (
         <div className='container' style={{paddingTop: '2rem'}}>
             <div className='row'>
-                <div className='col-md-5'>
-                    {responsiveImage && <Image data={responsiveImage}/>}
+                <div className='col-md-6'>
+                    <div className='container'>
+                        <div className='row'>
+                            <div className='col-md-3'>
+                                <div className='d-flex flex-column align-content-between'>
+                                    {
+                                        thumbnails.map(({responsiveImage}, idx) => (
+                                            <ThumbnailContainer onClick={e => {
+                                                setImageIndex(idx)
+                                            }} key={idx}>
+                                                <Image data={responsiveImage} style={{padding: '.5rem 0'}}/>
+                                            </ThumbnailContainer>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                            <div className='col-md-9'>
+                                {/*{responsiveImage && <Image data={responsiveImage}/>}*/}
+                                <Image data={actualImage}/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className='col-md-7'>
+                <div className='col-md-6'>
                     <div className='container d-flex flex-column justify-content-around align-content-center'>
                         <div className='row'>
                             <div className='col align-self-center'>
