@@ -1,15 +1,14 @@
 import React from "react";
 import styled from 'styled-components'
 import Layout from "../components/Layout/Layout";
-import ProductGrid from "../components/Products/ProductGrid";
 import Product from "../components/Products/Product";
 import {Button, Heading} from "evergreen-ui";
 import {request} from "../lib/datocms";
 import useSWR from 'swr'
 import MainCarousel from "../components/Common/Carousel/MainCarousel";
-import TopPicks from "../components/Products/TopPicks";
-import Carousel from 'react-elastic-carousel'
 import Slider from "../components/Common/Slider/Slider";
+import {useRecoilState} from "recoil";
+import {cart} from "../lib/atoms";
 
 const QUERY = `query AllProducts {
   allProducts(filter: {isRecommended: {eq: "true"}}) {
@@ -118,8 +117,8 @@ const prepareRecommendedProducts = allProducts => {
 }
 
 export default function Home({data: {allProducts, allUploads}, isPreviewMode}) {
-    let topPicks = []
-    let carouselImages = []
+    let topPicks
+    let carouselImages
     if (isPreviewMode) {
         const {data} = useSWR(isPreviewMode ? QUERY : null, request)
         topPicks = prepareRecommendedProducts(data ? data["allProducts"] : [])
@@ -129,7 +128,7 @@ export default function Home({data: {allProducts, allUploads}, isPreviewMode}) {
         carouselImages = allUploads
     }
     return (
-        <Layout showCarousel={true} style={{backgroundColor: 'white'}}>
+        <Layout showCarousel={true} style={{backgroundColor: 'white'}} quantityInCart={0}>
             <div className='d-flex flex-column  py-2'>
                 <MainCarousel images={carouselImages}/>
                 <div className='d-flex flex-column py-5 align-content-between'>

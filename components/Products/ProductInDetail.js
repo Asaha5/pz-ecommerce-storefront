@@ -4,6 +4,9 @@ import Image from "../Common/Image";
 import {Heading, Text, Strong, Paragraph} from 'evergreen-ui'
 import QuantityInput from "../Common/QuantityInput";
 import AppButton from "../Common/Button";
+import {cart} from "../../lib/atoms";
+import {useRecoilState} from 'recoil'
+import useCartStatus from "../../lib/hooks/use_cart_status";
 
 const PRODUCT_PROPERTIES = [
     {
@@ -30,6 +33,13 @@ const ProductInDetail = ({product}) => {
 
     const {responsiveImage, name, price, thumbnails, allImages} = product
     const {responsiveImage: actualImage} = allImages ? allImages[selectedImageIndex] : {responsiveImage}
+
+    const [cartState, setCart] = useCartStatus()
+
+    const onAddToCart = () => {
+        setCart(product, quantity)
+    }
+
     return (
         <div className='container' style={{paddingTop: '2rem'}}>
             <div className='row'>
@@ -75,7 +85,7 @@ const ProductInDetail = ({product}) => {
                         </div>
                         <div className='row'>
                             <div className='col d-flex justify-content-start align-self-center mt-3'>
-                                <AppButton title={"ADD TO CART"} iconRequired={true} icon={"add"} marginRight={10}/>
+                                <AppButton title={"ADD TO CART"} iconRequired={true} icon={"add"} marginRight={10} onClick={onAddToCart}/>
                                 <AppButton title={"BUY NOW"} iconRequired={false}/>
                             </div>
                         </div>

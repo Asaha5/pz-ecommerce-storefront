@@ -18,16 +18,16 @@ const Main = styled.main`
     font-family: 'Roboto', sans-serif;
 `
 
-function Layout({children, showCarousel, style}) {
+function Layout({children, quantityInCart, style}) {
     return (
         <Container>
             <Head>
-                <title>PZ SHOP</title>
+                <title>TOYMAGINE</title>
                 <link rel="icon" href="/favicon.ico" />
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;1,900&family=Roboto&display=swap" rel="stylesheet"/>
                 {/*<link rel="stylesheet" href="/grid.min.css"/>*/}
             </Head>
-            <Header/>
+            <Header quantityInCart={quantityInCart}/>
             <Main style={style}>
                 {children}
             </Main>

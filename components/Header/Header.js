@@ -1,29 +1,33 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     HeaderContainer, MobileHeader, ListItem, HeaderCategories,
-    HeaderActions, HeaderLink, GradientContainer
+    HeaderActions, HeaderLink
 } from './styles'
-import UserProfilePopover from "../UserProfile/UserProfilePopover";
-import {IconButton, Button, Pane} from "evergreen-ui";
+import {IconButton, Button, Pill} from "evergreen-ui";
 import HeaderSearch from "./Search";
-import Media from 'react-media';
 import ResponsiveSideBar from "./ResponsibeSideBar";
 import Link from 'next/link'
 import AppContext from '../../lib/context'
+import {useRecoilState} from "recoil";
+import {cart} from "../../lib/atoms";
 
 const wrapInLink = (href, text) => <Link href={`/${href}`} passHref><HeaderLink size={500}>{text}</HeaderLink></Link>
 
 const Header = () => {
     const [isSidebarOpen, setSidebarState] = useState(false)
     const {isMobileDevice} = useContext(AppContext)
+
+    const [cartStatus] = useRecoilState(cart)
+    const quantityInCart = cartStatus && cartStatus.reduce((acc, {quantity}) => {
+        return acc + quantity
+    }, 0)
+
     return (
         !isMobileDevice ?
             <HeaderContainer>
                 <Link href={'/'}>
-                    <h2 style={{cursor: 'pointer'}}>PZ SHOP</h2>
+                    <img src={'/shop-logo.png'} width={90} height={90} style={{cursor: 'pointer'}}/>
                 </Link>
-
-                {/*<GradientContainer></GradientContainer>*/}
                 <HeaderCategories>
                     <ListItem>
                         {wrapInLink('toys', 'Toys')}
@@ -43,13 +47,17 @@ const Header = () => {
                         <HeaderSearch/>
                     </ListItem>
                     <ListItem>
-                        {/*<UserProfilePopover name={"Arijit Saha"} />*/}
                         <Button height={38} marginRight={10} iconBefore="user" appearance="primary">
                             Sign In
                         </Button>
                     </ListItem>
                     <ListItem>
-                        <IconButton icon="shopping-cart" intent="none" appearance="minimal" iconSize={30}/>
+                        <Link href={'/cart'}>
+                            <Pill display="inline-flex" style={{backgroundColor: '#f2f3f7', color: '#116AB8', fontWeight: 'bold', fontSize: '1rem'}}>
+                                <IconButton icon="shopping-cart" intent="none" appearance="minimal" iconSize={30}/>
+                                {quantityInCart && quantityInCart}
+                            </Pill>
+                        </Link>
                     </ListItem>
                 </HeaderActions>
             </HeaderContainer>
@@ -61,7 +69,10 @@ const Header = () => {
                         <IconButton icon="menu" intent="none" appearance="minimal" iconSize={30}
                                     onClick={() => setSidebarState(!isSidebarOpen)}/>
                         <h2>PZ SHOP</h2>
-                        <IconButton icon="shopping-cart" intent="none" appearance="minimal" iconSize={30}/>
+                        <Pill display="inline-flex" style={{backgroundColor: '#f2f3f7', color: '#116AB8', fontWeight: 'bold', fontSize: '1rem'}}>
+                            <IconButton icon="shopping-cart" intent="none" appearance="minimal" iconSize={30}/>
+                            {quantityInCart && quantityInCart}
+                        </Pill>
                     </MobileHeader>
                     <div style={{display: 'flex', margin: '0 auto'}}>
                         <HeaderSearch/>

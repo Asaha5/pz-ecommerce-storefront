@@ -1,5 +1,6 @@
 import App from 'next/app'
 import React from 'react'
+import {RecoilRoot} from 'recoil'
 import { ThemeProvider } from 'styled-components'
 import AliceCarouselStyles from "../components/Common/GlobalStyles"
 import {SWRConfig} from 'swr'
@@ -28,16 +29,18 @@ export default class MyApp extends App {
             <Media queries={mediaQueries}>
                 {
                     matches => (
-                        <AppContext.Provider value={{
-                            isMobileDevice: isMobileDevice(matches)
-                        }}>
-                            <ThemeProvider theme={theme}>
-                                <SWRConfig fetcher={request}>
-                                    <AliceCarouselStyles/>
-                                    <Component {...pageProps} />
-                                </SWRConfig>
-                            </ThemeProvider>
-                        </AppContext.Provider>
+                        <RecoilRoot>
+                            <AppContext.Provider value={{
+                                isMobileDevice: isMobileDevice(matches)
+                            }}>
+                                <ThemeProvider theme={theme}>
+                                    <SWRConfig fetcher={request}>
+                                        <AliceCarouselStyles/>
+                                        <Component {...pageProps} />
+                                    </SWRConfig>
+                                </ThemeProvider>
+                            </AppContext.Provider>
+                        </RecoilRoot>
                     )
                 }
             </Media>
