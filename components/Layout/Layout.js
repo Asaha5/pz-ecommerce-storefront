@@ -26,6 +26,7 @@ function Layout({children, quantityInCart, style}) {
                 <link rel="icon" href="/favicon.ico" />
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;1,900&family=Roboto&display=swap" rel="stylesheet"/>
                 {/*<link rel="stylesheet" href="/grid.min.css"/>*/}
+                {/*<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>*/}
             </Head>
             <Header quantityInCart={quantityInCart}/>
             <Main style={style}>
