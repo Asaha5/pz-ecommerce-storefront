@@ -4,7 +4,7 @@ import scriptLoader from 'react-async-script-loader'
 
 const PAYPAL_BUTTON_CONTAINER = 'paypal-button-container'
 
-const loadPaypalButtons = (value) => {
+const loadPaypalButtons = (value, items) => {
     const paypalButtonContainer = document.getElementById(PAYPAL_BUTTON_CONTAINER)
     if(paypalButtonContainer){
         paypal.Buttons({
@@ -14,8 +14,12 @@ const loadPaypalButtons = (value) => {
                     purchase_units: [{
                         amount: {
                             currency_code: 'AUD',
-                            value: value.toString()
-                        }
+                            value: value.toString(),
+                            breakdown: {
+                                item_total: value.toString()
+                            }
+                        },
+                        items
                     }]
                 });
             },
@@ -24,6 +28,7 @@ const loadPaypalButtons = (value) => {
             onApprove: function (data, actions) {
                 return actions.order.capture().then(function (details) {
                     // Show a success message to the buyer
+                    console.log(details)
                     alert('Transaction completed by ' + details.payer.name.given_name + '!');
                 });
             }

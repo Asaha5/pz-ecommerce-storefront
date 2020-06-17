@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {consts} from 'react-elastic-carousel'
-import {ArrowRightIcon, ArrowLeftIcon, IconButton} from "evergreen-ui";
+import {ArrowRightIcon, ArrowLeftIcon} from "evergreen-ui";
 
 const ArrowContainer = styled.div`
   display: flex;

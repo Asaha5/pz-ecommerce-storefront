@@ -68,7 +68,9 @@ const Header = () => {
                     <MobileHeader>
                         <IconButton icon="menu" intent="none" appearance="minimal" iconSize={30}
                                     onClick={() => setSidebarState(!isSidebarOpen)}/>
-                        <h2>PZ SHOP</h2>
+                        <Link href={'/'}>
+                            <img src={'/shop-logo.png'} width={90} height={90} style={{cursor: 'pointer'}}/>
+                        </Link>
                         <Pill display="inline-flex" style={{backgroundColor: '#f2f3f7', color: '#116AB8', fontWeight: 'bold', fontSize: '1rem'}}>
                             <IconButton icon="shopping-cart" intent="none" appearance="minimal" iconSize={30}/>
                             {quantityInCart && quantityInCart}

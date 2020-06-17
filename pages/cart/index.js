@@ -5,8 +5,9 @@ import {Pane, Text, Strong, Heading, Button} from "evergreen-ui";
 import Layout from "../../components/Layout/Layout";
 import QuantityInput from "../../components/Common/QuantityInput";
 import useCartStatus from "../../lib/hooks/use_cart_status";
+import PaypalPanel from "../../components/Checkout/Payment";
 
-const Cart = () => {
+const Cart = ({paypalClientId}) => {
     const router = useRouter()
     const [cartState, setCart] = useCartStatus()
 
@@ -24,11 +25,13 @@ const Cart = () => {
 
     const deliveryFee = 0
 
+    const totalAmount = totalPrice + deliveryFee
+
     return (
         <Layout style={{backgroundColor: '#FFFFFF'}}>
             {
                 cartState && cartState.length > 0 ?
-                    <div className='container'>
+                    <div className='container-fluid'>
                         <div className='row justify-content-start no-gutters'>
                             <div className='col-xs-12 col-sm-12 col-md-8 col-lg-8'>
                                 <div className='container-fluid'>
@@ -75,11 +78,11 @@ const Cart = () => {
                                     }
                                     <div className='row'>
                                         <div className='col-12 p-3 d-flex justify-content-end'>
-                                            <Button height={38} marginRight={10} appearance="primary" onClick={() => {
-                                                router.push('/checkout').then(r => r)
-                                            }}>
-                                                PLACE ORDER
-                                            </Button>
+                                            {/*<Button height={38} marginRight={10} appearance="primary" onClick={() => {*/}
+                                            {/*    router.push('/checkout').then(r => r)*/}
+                                            {/*}}>*/}
+                                            {/*    PLACE ORDER*/}
+                                            {/*</Button>*/}
                                         </div>
                                     </div>
                                 </div>
@@ -124,6 +127,11 @@ const Cart = () => {
                                                 <Text size={500}>{`$${deliveryFee + totalPrice}`}</Text>
                                             </div>
                                         </div>
+                                        <div className={'row p-2 justify-content-around'}>
+                                            <div className='col-12'>
+                                                <PaypalPanel value={totalAmount} paypalClientId={paypalClientId}/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </Pane>
                             </div>
@@ -142,6 +150,14 @@ const Cart = () => {
             }
         </Layout>
     )
+}
+
+export async function getStaticProps() {
+    return {
+        props: {
+            paypalClientId: process.env.PAYPAL_CLIENT_ID
+        }
+    }
 }
 
 export default Cart
