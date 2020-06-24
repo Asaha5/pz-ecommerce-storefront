@@ -7,6 +7,7 @@ import {SWRConfig} from 'swr'
 import {request} from "../lib/datocms"
 import AppContext from '../lib/context'
 import Media from 'react-media'
+import 'semantic-ui-css/semantic.min.css'
 
 const theme = {
    themeColor: '#0788DE',

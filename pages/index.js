@@ -1,16 +1,33 @@
 import React from "react";
-import styled from 'styled-components'
+import styles from './index.module.scss'
 import Layout from "../components/Layout/Layout";
-import Product from "../components/Products/Product";
-import {Button, Heading} from "evergreen-ui";
 import {request} from "../lib/datocms";
 import useSWR from 'swr'
 import MainCarousel from "../components/Common/Carousel/MainCarousel";
+import Image from "../components/Common/Image"
+import {Button} from 'semantic-ui-react'
 import Slider from "../components/Common/Slider/Slider";
-import {useRecoilState} from "recoil";
-import {cart} from "../lib/atoms";
 
 const QUERY = `query AllProducts {
+  allCategories {
+    id
+    name
+    description
+    categoryimage {
+      responsiveImage(imgixParams: { fit: crop, h: 380, w: 380, auto: enhance}) {
+        srcSet
+        webpSrcSet
+        sizes
+        src
+        width
+        height
+        aspectRatio
+        alt
+        title
+        base64
+      }
+    } 
+  }
   allProducts(filter: {isRecommended: {eq: "true"}}) {
     id
     isRecommended
@@ -18,13 +35,14 @@ const QUERY = `query AllProducts {
     price
     productId
     productCategory {
+      id
       name
       description
       categoryId
     }
     actualImages: productImage {
       url
-      responsiveImage(imgixParams: { fit: fill  , w: 350, h: 400, auto: format}) {
+      responsiveImage(imgixParams: { fit: clip, w: 350, h: 300, auto: format}) {
         srcSet
         webpSrcSet
         sizes
@@ -53,8 +71,8 @@ const QUERY = `query AllProducts {
       }
     }
   }
-  allUploads(filter: {filename: {matches: {pattern: "carousel*"}}}) {
-    responsiveImage(imgixParams: {fit: fill, w: 800, h: 300, auto: format}) {
+  allUploads(filter: {filename: {matches: {pattern: "topsellers*"}}}) {
+    responsiveImage(imgixParams: {fit: fill, w: 200, h: 150, auto: format}) {
       srcSet
       webpSrcSet
       sizes
@@ -70,40 +88,6 @@ const QUERY = `query AllProducts {
 }
 `
 
-const ProductSliderContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  position: relative;
-  background-image: url("https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80");
-  background-color: #cccccc;
-  height: 600px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: .5rem;
-  margin-top: .5rem;
-  @media only screen and (max-width : 768px) {
-    flex-direction: column;
-    height: 600px;
-    padding: 0;
-    margin-top: 1rem;
-  }
-`
-
-const TextContainer = styled.div`
-  text-align: left;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-family: "Montserrat", sans-serif;
-  @media only screen and (max-width : 768px) {
-    display: none;
-  }
-`
-
 const prepareRecommendedProducts = allProducts => {
     return allProducts.map(product => {
         const url = product && product["actualImages"] && product["actualImages"].length > 0 ? product["actualImages"][0].url : null
@@ -117,44 +101,82 @@ const prepareRecommendedProducts = allProducts => {
 }
 
 export default function Home({data: {allProducts, allUploads}, isPreviewMode}) {
-    let topPicks
+    let categoryDetails
     let carouselImages
+    let topSellers = []
     if (isPreviewMode) {
         const {data} = useSWR(isPreviewMode ? QUERY : null, request)
-        topPicks = prepareRecommendedProducts(data ? data["allProducts"] : [])
         carouselImages = data && data["allUploads"] ? data["allUploads"] : []
+        if (data) {
+            const {allCategories, allProducts, allUploads} = data
+            categoryDetails = allCategories.map(({name, categoryimage: {responsiveImage}}) => ({
+                name,
+                productImage: responsiveImage
+            }))
+            topSellers = allUploads.map(({responsiveImage}) => responsiveImage)
+        }
+
     } else {
-        topPicks = prepareRecommendedProducts(allProducts)
+        prepareRecommendedProducts(allProducts)
         carouselImages = allUploads
     }
     return (
         <Layout showCarousel={true} style={{backgroundColor: 'white'}} quantityInCart={0}>
-            <div className='d-flex flex-column  py-2'>
-                <MainCarousel images={carouselImages}/>
-                <div className='d-flex flex-column py-5 align-content-between'>
-                    <Heading size={700} marginTop="default" style={{
-                        textAlign: 'center', fontWeight: 'bold',
-                        fontFamily: '"Montserrat", sans-serif'
-                    }}>
-                        OUR PICKS
-                    </Heading>
-                    <ProductSliderContainer>
-                        <div style={{width: '450px', position: 'relative'}}>
-                            <TextContainer>
-                                <h3>OUR BEST SELLING PRODUCTS</h3>
-                                <Button height={50} iconAfter='circle-arrow-right'>View More</Button>
-                            </TextContainer>
-
+            <div className={`container pt-2 ${styles.storefront}`}>
+                <div className='row'>
+                    <div className='col-12'>
+                        <MainCarousel images={carouselImages}/>
+                    </div>
+                </div>
+                <div className='row' style={{marginTop: '70px'}}>
+                    <div className='col-12 d-flex justify-content-center'>
+                        <h2 className={styles.header}>Shop By Categories</h2>
+                    </div>
+                </div>
+                <div className='row pt-5'>
+                    <div className='col-12'>
+                        <div className={styles.productCategories}>
+                            {
+                                categoryDetails && categoryDetails.map(({name, productImage}, idx) => {
+                                    const description = name !== "Pre - Orders" && name !== "New Arrivals" ? name : ''
+                                    return (
+                                        <div key={`${name}_${idx}`} className={styles.categoryTile}>
+                                            <Image data={productImage}/>
+                                            <div className={styles.hoverDetails}>
+                                                <p>{description}</p>
+                                                <div className={styles.shopNow}>
+                                                    <Button>Shop Now</Button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
-                        <div style={{width: '100%'}}>
-                            <Slider itemsToShow={3} width={'100%'}>
-                                {topPicks.map(({...productProps}, idx) => (
-                                    <Product key={idx} {...productProps} ></Product>
-                                ))}
-                            </Slider>
-                        </div>
-                    </ProductSliderContainer>
+                    </div>
+                </div>
+                <div className='row' style={{marginTop: '70px'}}>
+                    <div className='col-12 d-flex justify-content-center'>
+                        <h2 className={styles.header}>Top Sellers</h2>
+                    </div>
+                </div>
+                <div className='row pt-5'>
+                    <div className='col-12' style={{height: '70px'}}>
+                        <Slider itemsToShow={4} width={'100%'}>
+                            {
+                                topSellers && topSellers.map((seller, idx) => {
+                                    return (
+                                        <Image key={`seller_${idx}`} data={seller}/>
+                                    )
+                                })
+                            }
+                        </Slider>
+                    </div>
+                </div>
+                <div className='row' style={{height: '50px'}}>
+                    <div className='col-12'>
 
+                    </div>
                 </div>
             </div>
         </Layout>

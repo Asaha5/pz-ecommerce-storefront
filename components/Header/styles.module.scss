@@ -1,0 +1,25 @@
+@import "../../common/base.module";
+
+.headerContainer {
+  @media only screen and (max-width : 768px) {
+  }
+
+  @media (min-width: 992px) {
+    border-bottom: 1px solid $base-light-orange;
+  }
+
+  .headerLink {
+    text-decoration: none;
+    color: $base-text-color;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $base-light-brown;
+    }
+  }
+
+  .headerIcons {
+    color: $base-light-brown
+  }
+}

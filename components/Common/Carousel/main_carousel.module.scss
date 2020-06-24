@@ -1,0 +1,24 @@
+@import '../../../common/base.module';
+
+.mainCarouselContainer {
+  height: 450px;
+  @media only screen and (max-width : 768px) {
+    height: 200px;
+  }
+
+  .imgContainer {
+    height: 450px;
+    object-fit: cover;
+    width: 100%;
+    @media only screen and (max-width : 768px) {
+      height: 200px;
+    }
+  }
+}
+
+.headerIconContainer {
+  color: $base-light-brown;
+  cursor: pointer;
+}
+
+

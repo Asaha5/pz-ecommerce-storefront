@@ -1,51 +1,34 @@
 import React from 'react'
-import styled from 'styled-components'
-import {Button, SideSheet, Position, Text} from "evergreen-ui";
+import styles from './styles.module.scss'
+import { Menu, Segment, Sidebar } from 'semantic-ui-react'
 
-const Menu = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  list-style: none;
-  padding: 1rem 0;
-  height: 200px;
-`
 
-const MenuItem = styled.li`
-  border-bottom: 1px solid #ddebf7;
-  width: 100%;
-  padding: .5rem 1rem;
-`
-
-const ResponsiveSideBar = ({isShown, onClose}) => {
+const ResponsiveSidebar = ({children, visible, toggleSidebar, menuItems}) => {
     return (
-        <SideSheet
-            isShown={isShown}
-            onCloseComplete={onClose}
-            width={'80%'}
-            position={Position.LEFT}
-        >
-            <Menu>
-                <MenuItem>
-                    <Text>Toys</Text>
-                </MenuItem>
-                <MenuItem>
-                    <Text>Wholesales</Text>
-                </MenuItem>
-                <MenuItem>
-                    <Text>Sales</Text>
-                </MenuItem>
-                <MenuItem>
-                    <Text>About Us</Text>
-                </MenuItem>
-                <MenuItem>
-                    <Button height={25} marginRight={10} iconBefore="user" appearance="primary">
-                        Sign In
-                    </Button>
-                </MenuItem>
-            </Menu>
-        </SideSheet>
+        <Sidebar.Pushable as={Segment}>
+            <Sidebar
+                as={Menu}
+                animation='overlay'
+                icon='labeled'
+                onHide={toggleSidebar}
+                vertical
+                visible={visible}
+            >
+                {
+                    menuItems.map((menu, idx) => {
+                        return (
+                            <Menu.Item key={`menu_${idx}`} className={styles.headerLink}>
+                                {menu}
+                            </Menu.Item>
+                        )
+                    })
+                }
+            </Sidebar>
+            <Sidebar.Pusher>
+                {children}
+            </Sidebar.Pusher>
+        </Sidebar.Pushable>
     )
 }
 
-export default ResponsiveSideBar
+export default ResponsiveSidebar

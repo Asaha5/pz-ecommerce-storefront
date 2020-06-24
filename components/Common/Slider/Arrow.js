@@ -1,35 +1,14 @@
 import React from 'react'
-import styled from 'styled-components'
+import styles from './slider.module.scss'
 import {consts} from 'react-elastic-carousel'
-import {ArrowRightIcon, ArrowLeftIcon} from "evergreen-ui";
+import {Icon} from 'semantic-ui-react'
 
-const ArrowContainer = styled.div`
-  display: flex;
-  position: absolute;
-  top: 40%;
-  ${({direction}) => (direction === consts.NEXT) && `right: 3px`};
-  ${({direction}) => (direction === consts.PREV) && `left: 3px`};
-  height: 50px;
-  width: 50px;
-  padding: .5rem;
-  justify-content: center;
-  background: white;
-  border-radius: 50%;
-  cursor: pointer;
-  align-items: center;
-  transition: transform ease-in 0.1s;
-  &:hover {
-    transform: scale(1.1);
-  }
-  z-index: 100;
-`
-
-const Arrow = ({ type, onClick, isEdge}) => {
-    const icon = type === consts.PREV ? <ArrowLeftIcon/> : <ArrowRightIcon/>
+const Arrow = ({ type, onClick }) => {
+    const icon = type === consts.PREV ? <Icon name='arrow left' size={'big'}></Icon> : <Icon name='arrow right' size={'big'}></Icon>
     return (
-        <ArrowContainer direction={type} onClick={onClick}>
+        <div className={`${styles.arrowContainer} ${type === consts.PREV ? styles.left : styles.right }`} onClick={onClick}>
             {icon}
-        </ArrowContainer>
+        </div>
     )
 }
 
