@@ -11,13 +11,17 @@ const Layout = ({children, style}) => {
             <Head>
                 <title>TOYMAGINE</title>
                 <link rel="icon" href="/favicon.ico"/>
-                <link rel="preload" href="https://www.datocms-assets.com/28152/1592226245-carousel-4.png" as="image" crossorigin/>
-                <link rel="preload" href="https://www.datocms-assets.com/28152/1592099498-carousel-2.png" as="image" crossorigin/>
-                <link rel="preload" href="https://www.datocms-assets.com/28152/1592099822-carousel-3.jpg" as="image" crossorigin/>
-                <link rel="preload" href="https://www.datocms-assets.com/28152/1592226284-carousel-5.jpg" as="image" crossorigin/>
+                <link rel="preload" href="https://www.datocms-assets.com/28152/1592226245-carousel-4.png" as="image"
+                      crossOrigin={true}/>
+                <link rel="preload" href="https://www.datocms-assets.com/28152/1592099498-carousel-2.png" as="image"
+                      crossOrigin={true}/>
+                <link rel="preload" href="https://www.datocms-assets.com/28152/1592099822-carousel-3.jpg" as="image"
+                      crossOrigin={true}/>
+                <link rel="preload" href="https://www.datocms-assets.com/28152/1592226284-carousel-5.jpg" as="image"
+                      crossOrigin={true}/>
                 {/*<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>*/}
             </Head>
-            <Header />
+            <Header/>
             <div className={styles.main}>
                 {children}
             </div>
