@@ -1,16 +1,17 @@
 import React from 'react'
-import { Button } from 'evergreen-ui'
+import { Button } from 'semantic-ui-react'
 
 const AppButton = ({title, iconRequired, icon, ...rest}) => {
     let props = {
-        height: 38,
-        appearance: "primary",
+        size: "large",
+        color: "brown",
         ...rest
     }
     if(iconRequired){
         props = {
             ...props,
-            iconBefore: icon
+            icon,
+            labelPosition: 'right'
         }
     }
     return (

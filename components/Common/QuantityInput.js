@@ -1,12 +1,5 @@
-import React, {useState} from 'react'
-import styled from 'styled-components'
+import React from 'react'
 import {TextInputField, IconButton} from "evergreen-ui";
-
-const QuantityInputContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-content: center;
-`
 
 const QuantityInput = ({quantity, onQuantityChange}) => {
     const onHandleQuantityChange = (e) => {
@@ -18,7 +11,7 @@ const QuantityInput = ({quantity, onQuantityChange}) => {
         onQuantityChange(quantity + step)
     }
     return (
-        <QuantityInputContainer>
+        <div style={{display: "flex", justifyContent: "flex-start", alignContent: "flex-start"}}>
             <IconButton icon="minus" intent="none" appearance="minimal" iconSize={26} marginRight={5} marginTop={2}
                 onClick = {e => {
                     handleClick(-1)
@@ -35,7 +28,7 @@ const QuantityInput = ({quantity, onQuantityChange}) => {
                 onClick = {e => {
                     handleClick(1)
                 }}/>
-        </QuantityInputContainer>
+        </div>
     )
 }
 

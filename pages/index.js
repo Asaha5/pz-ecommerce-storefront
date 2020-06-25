@@ -7,6 +7,7 @@ import MainCarousel from "../components/Common/Carousel/MainCarousel";
 import Image from "../components/Common/Image"
 import {Button} from 'semantic-ui-react'
 import Slider from "../components/Common/Slider/Slider";
+import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder";
 
 const QUERY = `query AllProducts {
   allCategories {
@@ -137,7 +138,7 @@ export default function Home({data: {allProducts, allUploads}, isPreviewMode}) {
                     <div className='col-12'>
                         <div className={styles.productCategories}>
                             {
-                                categoryDetails && categoryDetails.map(({name, productImage}, idx) => {
+                                categoryDetails ? categoryDetails.map(({name, productImage}, idx) => {
                                     const description = name !== "Pre - Orders" && name !== "New Arrivals" ? name : ''
                                     return (
                                         <div key={`${name}_${idx}`} className={styles.categoryTile}>
@@ -149,6 +150,12 @@ export default function Home({data: {allProducts, allUploads}, isPreviewMode}) {
                                                 </div>
                                             </div>
                                         </div>
+                                    )
+                                }) : [...Array(12).keys()].map(_ => {
+                                    return (
+                                        <Placeholder key={_} className={`${styles.skeleton} ${styles.skeletonSpecific}`}>
+                                            <Placeholder.Image square/>
+                                        </Placeholder>
                                     )
                                 })
                             }

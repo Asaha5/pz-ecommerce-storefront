@@ -1,6 +1,5 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import Link from 'next/link'
-import AppContext from '../../lib/context'
 import {useRecoilState} from "recoil";
 import {cart} from "../../lib/atoms";
 import {List, Search, Icon} from 'semantic-ui-react'
@@ -11,7 +10,6 @@ const Header = () => {
     const [results, setResults] = useState([])
     const [searchValue, setValue] = useState('')
     const [isSidebarOpen, setSidebarStatus] = useState(false)
-    const {isMobileDevice} = useContext(AppContext)
 
     const [cartStatus] = useRecoilState(cart)
     const quantityInCart = cartStatus && cartStatus.reduce((acc, {quantity}) => {

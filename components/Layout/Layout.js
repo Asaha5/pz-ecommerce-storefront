@@ -11,10 +11,10 @@ const Layout = ({children, style}) => {
             <Head>
                 <title>TOYMAGINE</title>
                 <link rel="icon" href="/favicon.ico"/>
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;1,900&family=Roboto&display=swap"
-                    rel="stylesheet"/>
-                {/*<link rel="stylesheet" href="/grid.min.css"/>*/}
+                <link rel="preload" href="https://www.datocms-assets.com/28152/1592226245-carousel-4.png" as="image" crossorigin/>
+                <link rel="preload" href="https://www.datocms-assets.com/28152/1592099498-carousel-2.png" as="image" crossorigin/>
+                <link rel="preload" href="https://www.datocms-assets.com/28152/1592099822-carousel-3.jpg" as="image" crossorigin/>
+                <link rel="preload" href="https://www.datocms-assets.com/28152/1592226284-carousel-5.jpg" as="image" crossorigin/>
                 {/*<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>*/}
             </Head>
             <Header />
