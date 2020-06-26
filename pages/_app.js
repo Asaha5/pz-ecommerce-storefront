@@ -16,8 +16,6 @@ import 'semantic-ui-css/semantic.min.css'
 //     large: "(max-width: 1199.98px)" // Large devices (desktops, less than 1200px)
 // }
 
-const isMobileDevice = ({extraSmall, small}) => extraSmall || small
-
 export default class MyApp extends App {
     render() {
         const { Component, pageProps } = this.props

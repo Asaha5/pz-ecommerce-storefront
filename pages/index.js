@@ -180,7 +180,12 @@ export default function Home({data: {allProducts, allUploads}, isPreviewMode}) {
                         </Slider>
                     </div>
                 </div>
-                <div className='row' style={{height: '50px'}}>
+                <div className='row pt-5' style={{height: '50px'}}>
+                    <div className='col-12 d-flex justify-content-center'>
+                        <h2 className={styles.header}>Top Reviews</h2>
+                    </div>
+                </div>
+                <div className='row pt-5' style={{height: '150px'}}>
                     <div className='col-12'>
 
                     </div>

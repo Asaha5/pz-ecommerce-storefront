@@ -7,11 +7,11 @@ module.exports = {
             include: /node_modules/,
             type: "javascript/auto"
         });
-        config.plugins.push(new OptimizeCssAssetsPlugin({
-            cssProcessorPluginOptions: {
-                preset: 'advanced',
-            },
-        }))
+        // config.plugins.push(new OptimizeCssAssetsPlugin({
+        //     cssProcessorPluginOptions: {
+        //         preset: 'advanced',
+        //     },
+        // }))
         return config
     }
 }
